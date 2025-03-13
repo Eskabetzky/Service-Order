@@ -1,0 +1,220 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Sono', sans-serif;
+
+}
+
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body{
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+:root{
+    --bg-color: #1b7a1f;
+    --second-bg-color: #323946;
+    --text-color: #000000;
+    --main-color: #0ef;
+}
+
+section{
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+.home-image{
+    display: flex;
+    justify-content: center;
+}
+.home-image img{
+    border-radius: 50%;
+    width: 200px;
+}
+
+  .btn{
+   
+    padding: .5rem;
+    background: gray;
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color);
+    font-size: 1rem;
+    color: black;
+    letter-spacing: .1rem;
+    font-weight: 500.5;
+    transition: .5s ease;
+    margin-top: 2rem;
+    cursor: pointer;
+    width: 8%;
+    
+}
+.btn:hover{
+    box-shadow: none;
+}
+
+.contact .heading-h2{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 100;
+}
+
+.contact form{
+    max-width: 150rem;
+    margin: 5rem auto;
+    text-align: left;
+
+}
+
+
+.contact form .form-input2{
+    font-size: 1rem;
+    height: 5%px;
+    width: 100%;
+    align-items: left;
+    align-content: left;
+}
+
+.contact .form-input{
+    font-size: 1.2rem;
+    height: 20%px;
+    width: 50%;
+    font-weight: bold;
+}
+
+.contact form .input-label1 input{ 
+    width: 100%;
+    height: 30px;
+    flex-direction: row;
+    border: none;
+    border-bottom: 1px solid rgb(5, 0, 0);
+    margin-bottom: 30px;
+    border-width: 3;
+    padding-left: 30px;
+}
+
+.contact form .input-label2 input{ 
+    width: 50%;
+    height: 30px;
+    flex-direction: column;
+    border: none;
+    border-bottom: 1px solid rgb(5, 0, 0);
+    margin-bottom: 50px;
+    border-width: 3;
+    row-gap: 10px;
+    
+}
+.contact form .input-box input{ 
+    display: flex;
+    flex-direction: row;
+    border: none;
+    border-bottom: 1px solid rgb(5, 0, 0);
+}
+
+
+.contact form .input-box-serve{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    
+}
+
+.form .input-heading .heading h2{
+    text-align: left;
+    font-size: 20rem;
+    margin-bottom:x;
+}
+
+.contact form .input-box input,
+.contact form textarea{
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+    margin: .7rem 0;
+    margin-bottom: 15px;
+    align-items: row;
+    text-align: row;
+}
+
+.contact .input-box-serve input{
+    border-radius: .8rem;
+    margin: .7rem 0;
+    margin-bottom: 15px;
+    width: 10%;
+    padding: 0.2rem;
+}
+
+.table .table-row tr  input{
+    align-items: row;
+    font-size: 1rem;
+}
+
+table, th, td {
+    border:1px solid black;
+  }
+
+
+
+  table.customTable {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-width: 3px;
+    border-color: #464646;
+    border-style: solid;
+    color: #000000;
+  }
+  
+  table.customTable td,
+  table.customTable th {
+    border-width: 1px;
+    border-color: #000000;
+    border-style: solid;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  table{
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td{
+    padding: 2px;
+  }
+
+  input{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 1px;
+    font-size: 10px;
+  }
+
+  input[type="date"]{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 1px;
+    font-size: 7px;
+    font-weight: bold;
+
+  }
+  
+  table.customTable thead {
+    background-color: #000000;
+  }
+
+
