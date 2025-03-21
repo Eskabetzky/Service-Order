@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=DM+Serif+Text:ital@0;1&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Travel Order</title>
+    <!--Box Icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+       *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Bona Nova SC', sans-serif;
+      }
+
+
+      html{
+         font-size: 62.5%;
+         overflow-x: hidden;
+      }
+
+      body {
+         background-image: url(images/wallpaper1.jpg);
+         background-size:cover;
+         background-position: center;
+         background-repeat:initial;
+         margin: 0;
+         padding: 0;
+         min-height: 100vh;
+      }
+      :root{
+         --bg-color: #0a5304;
+         --second-bg-color: #323946;
+         --text-color: #000000;
+         --main-color: #0ef;
+      }
+      .contact .Tonum .tonumber label input{
+        width: 10px;
+        flex-direction: right;
+        border: none;
+        border-width: 3;
+        font-weight: bold;
+      }
+
+        /* Hide the default checkbox */
+        .custom-checkbox input {
+          display: none;
+        }
+    
+        /* Create a custom checkbox */
+        .custom-checkbox .checkmark {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-color: #eee;
+          border: 2px solid #ccc;
+          border-radius: 4px;
+          position: relative;
+          margin-right: 30px;
+          vertical-align: middle;
+        }
+    
+        /* Style the checkmark when the checkbox is checked */
+        .custom-checkbox input:checked + .checkmark {
+          background-color: #2196F3;
+          border-color: #2196F3;
+        }
+    
+        /* Add a checkmark symbol */
+        .custom-checkbox .checkmark::after {
+          content: "";
+          position: absolute;
+          display: none;
+          left: 6px;
+          top: 2px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+    
+        /* Show the checkmark when checked */
+        .custom-checkbox input:checked + .checkmark::after {
+          display: block;
+        }
+
+        table.customTable {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        th, td {
+          border: 1px solid #ccc;
+          padding: 8px;
+        }
+        textarea {
+          width: 100%;
+          box-sizing: border-box; /* Ensure padding and border are included in width */
+          resize: none; /* Disable manual resizing */
+          overflow: hidden; /* Hide scrollbars */
+          border: 1px solid #ccc;
+          padding: 8px;
+          font-family: inherit;
+          font-size: inherit;
+        }
+
+      </style>  
+
+</head>
+<body>
+
+    <!--header design-->
+    <!--Home Design Section-->
+    <!--About Design-->
+    <!--Services Section-->
+    <!--Contact Section Design-->
+    <section class="contact" id="contact">
+        <div class="home-image">
+            <img src="images/Department_of_Agrarian_Reform_(DAR).svg.png" alt="">
+        </div>
+        <div class="heading-h2">
+            <h2 class="heading">Department of Agrarian Reform</h2> 
+        </div>
+        <div class="heading-h2">
+            <h2 class="heading">Travel Order</h2> 
+        </div>
+        
+        <form class="form-input" action="#">
+            <div class="Tonum">
+              <label class="tonumber">T.O No. <input type="number" placeholder=" "></label>
+            </div>
+            <div>
+                <label class="input-label1">Full Name <br> <input type="text" placeholder=" "></label>
+            </div> 
+            <div id="grid-container">
+                <label class="input-label1">Position <br> <input type="text" placeholder=" "></label>
+            </div>
+            <label class="custom-checkbox">Means of Transportation: </label>
+            <div id="grid-container">
+                <label class="custom-checkbox">Air
+                    <input type="checkbox" name="styledCheckbox">
+                    <span class="checkmark"></span> 
+                </label>
+                <label class="custom-checkbox">Land
+                    <input type="checkbox" name="styledCheckbox">
+                    <span class="checkmark"></span> 
+                </label>
+                <label class="custom-checkbox">Gov't Vehicle
+                    <input type="checkbox" name="styledCheckbox">
+                    <span class="checkmark"></span> 
+                </label>
+                <label class="custom-checkbox">Others: Please Specify
+                    <input type="checkbox" name="styledCheckbox">
+                    <span class="checkmark"></span> 
+                </label>
+            </div>
+        </form>
+     </div>
+      <form action="#">
+          <table class="customTable">
+            <tbody>
+              <tr>
+                <td colspan="1">DATE OF DEPARTURE</td>
+                <td colspan="1">DATE OF RETURN</td>
+                <td colspan="1">DESTINATION</td>
+                <td colspan="1">PURPOSE OF TRIP <br> (Specify projects/activities/cases to be attend to)</td>
+                <td colspan="1">REPORT TO <br> (Specify name of offices/s)</td>
+              </tr>
+            </tbody>
+              <tbody>
+                
+                <tr>
+                  <td colspan="1" width="10px"><input type="date" placeholder="enter date"></td>
+                  <td colspan="1" width="10px"><input type="date" placeholder="enter date"></td>
+                  <td colspan="1" width="200px"><input type="text" name="Destination"></td>
+                  <td colspan="1" width="480px"><input type="text" name="Purpose"></td>
+                  <td colspan="1" width="150px"><input type="text" name="Report"></td>
+                </tr>
+                <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="50px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="number" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="50pxpx"><input type="date" placeholder="enter date"></td>
+                    <td colspan="1" width="140px"><input type="text" name="Destination"></td>
+                    <td colspan="1" width="130px"><input type="text" name="Purpose"></td>
+                    <td colspan="1" width="115px"><input type="text" name="Report"></td>
+                  </tr>
+              </tbody>
+            </table>
+            <input type="button" value="Save" class="btn">
+            <button class="btn" onclick="window.print()" value="Print">Print</button>
+      </form>
+    
+    </section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>

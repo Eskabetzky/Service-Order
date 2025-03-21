@@ -7,36 +7,274 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@500;800&display=swap" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=DM+Serif+Text:ital@0;1&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Special+Elite&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Service Order</title>
+    
     <!--Box Icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
-<style>
-    .h1 {color: black; align-items: center;}
-
-</style>
-
+    <style>
+        body {
+            background-image: url(images/wallpaper1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 10%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 200;
+        }
+        .logo {
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 550;
+            cursor: default;
+        }
+        .navbar a {
+            font-size: 1.7rem;
+            color: white;
+            margin-left: 4rem;
+            transition: .3s;
+            cursor: pointer;
+        }
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+        }
+        div {
+            margin-top: 50px;
+        }
+        .home-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .heading-h1 {
+            color: #ffffff;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 100px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: #f4f4f4 ;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+        .modal-content a {
+            display: block;
+            margin: 2px 0;
+            padding: 10px;
+            background-color: #1483eb;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .modal-content a:hover {
+            background-color: #0056b3;
+        }
+        .close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: white;
+            z-index: 1001;
+        }
+    </style>
 </head>
 <body>
 
-    
-    <section>
-        <div class="home-image">
-            <img src="DARLOGO.jpg-removebg-preview.png" alt="">
-        </div>
+    <!-- Header Design -->
+    <header class="header">
+        <a href="#" class="logo">DAR-MISOR</a>
+        <nav class="navbar">
+            <a onclick="openModal('serviceModal')">Service Order</a>
+            <a onclick="openModal('travelModal')">Travel Order</a>
+            <a onclick="openModal('fileModal')">File Submitted Tracker</a>
+        </nav>
+    </header>
 
-        <h1>Department of Agrarian Reform</h1>
+    <!-- Main Content -->
+    <section class="container">
+        <div>
+            <div class="home-image">
+                <img src="images/Department_of_Agrarian_Reform_(DAR).svg.png" alt="DAR Logo">
+            </div>
+            <h1 class="heading-h1">Department of Agrarian Reform <br> Misamis Oriental</h1>
+            
+        </div>
     </section>
 
+    <!-- Service Order Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('serviceModal')">&times;</span>
+            <h2>Service Order</h2>
+            <a onclick="openModal('categoriesModal')">Division</a>
+        </div>
+    </div>
 
+    <!-- Categories Modal -->
+    <div id="categoriesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('categoriesModal')">&times;</span>
+            <h2>Division</h2>
+            <a href="#" onclick="handleCategoryClick('PARO')">PARO</a>
+            <a href="#" onclick="handleCategoryClick('STOD')">STOD</a>
+            <a href="#" onclick="handleCategoryClick('LTS')">LTS</a>
+            <a href="#" onclick="handleCategoryClick('PBDD')">PBDD</a>
+            <a href="#" onclick="handleCategoryClick('LEGAL DIVISION')">LEGAL DIVISION</a>
+            <a href="#" onclick="handleCategoryClick('PARAD')">PARAD</a>
+            <a href="#" onclick="handleCategoryClick('CLUSTER I')">CLUSTER I</a>
+            <a href="#" onclick="handleCategoryClick('CLUSTER II')">CLUSTER II</a>
+            <a href="#" onclick="handleCategoryClick('CLUSTER III')">CLUSTER III</a>
+            <a href="#" onclick="handleCategoryClick('CLUSTER IV')">CLUSTER IV</a>
+            <a href="#" onclick="handleCategoryClick('CLUSTER V')">CLUSTER V</a>
+        </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <!-- Add Files Modal -->
+    <div id="addFilesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addFilesModal')">&times;</span>
+            <h2>Add Files</h2>
+            <a href="ServiceOrderForm.html">Add Files</a>
+            <a onclick="saveFiles()">Save Files</a>
+        </div>
+    </div>
 
+    <!-- Saved Files Modal -->
+    <div id="savedFilesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('savedFilesModal')">&times;</span>
+            <h2>Saved Files</h2>
+            <ul id="savedFilesList"></ul>
+        </div>
+    </div>
+
+    <!-- Travel Order Modal -->
+    <div id="travelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('travelModal')">&times;</span>
+            <h2>Travel Order</h2>
+            <a href="TravelOrderRecord.html">Add Files</a>
+            <a href="#">Saved Files</a>
+        </div>
+    </div>
+
+    <!-- File Submission Modal -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('fileModal')">&times;</span>
+            <h2>File Submitted</h2>
+            <a href="FileSubmittedTracker.html">Add Files</a>
+            <a href="#">View Submissions</a>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading">Loading...</div>
+
+    <script>
+        // Function to open modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Array to store saved files
+        let savedFiles = [];
+
+        // Variable to store the selected category
+        let selectedCategory = null;
+
+        // Function to handle category click
+        function handleCategoryClick(category) {
+            selectedCategory = category; // Store the selected category
+            openModal('addFilesModal'); // Open the Add Files modal
+        }
+
+        // Function to save files
+        function saveFiles() {
+            if (selectedCategory) {
+                const file = `File for ${selectedCategory}`; // Example file data
+                savedFiles.push(file);
+                updateSavedFilesModal();
+                closeModal('addFilesModal');
+                openModal('savedFilesModal'); // Open the Saved Files modal
+
+                // Show loading indicator
+                document.getElementById('loading').style.display = 'block';
+
+                // Simulate a 1-second loading delay
+                setTimeout(() => {
+                    // Hide loading indicator
+                    document.getElementById('loading').style.display = 'none';
+
+                    // Navigate to ServiceOrderForm.html after the delay
+                    window.location.href = 'ServiceOrderForm.html';
+                }, 1000); // 1-second delay
+            }
+        }
+
+        // Function to update the Saved Files modal
+        function updateSavedFilesModal() {
+            const savedFilesList = document.getElementById('savedFilesList');
+            savedFilesList.innerHTML = ''; // Clear the list
+            savedFiles.forEach(file => {
+                const listItem = document.createElement('li');
+                listItem.textContent = file;
+                savedFilesList.appendChild(listItem);
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </body>
 </html>
