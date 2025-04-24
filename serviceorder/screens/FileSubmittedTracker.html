@@ -23,7 +23,11 @@
       border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
-      background-color: #ffdfdf;
+      background-color: #f4f4f4;
+    }
+
+    td{
+      text-align: left;
     }
     th {
       background-color: #f4f4f4;
@@ -40,27 +44,39 @@
       margin-right: 5px;
       cursor: pointer;
       border-radius: 5px;
-      background-color: aquamarine;
+      background-color: #323232;
       font-size: 1rem;
+      color: white;
+    }
+
+    div .Savebutton {
+     margin-top: 20px;
+
     }
     .actions {
       margin-bottom: 20px;
       justify-content: center;
     }
     .heading-h2 {
-            color: #007222;
+            color: #ffffff;
             text-align: center;
             margin-top: 100px;
             font-size: large;
             margin-bottom: 40px;
         }
+    /* Hide the Print and Save buttons when printing */
+    @media print {
+              .no-print {
+                  display: none;
+              }
+          }
   </style>
 </head>
 <body>
   <div class="heading-h2">
     <h2 class="heading">Department of Agrarian Reform</h2> 
     <h2>File Tracker</h2>
-</div>
+  </div>
   <!-- Form to Add/Update Records -->
   <div class="actions">
     <input type="text" id="recordInput" placeholder="Enter a record">
@@ -108,7 +124,10 @@
       <!-- Records will be dynamically added here -->
     </tbody>
   </table>
-  <button onclick="saveRecords()">Save</button>
+  <div>
+    <input type="button" value="Save" class="btn no-print">
+    <button class="btn no-print" onclick="window.print()" value="Print">Print</button>
+  </div>
 
   <script>
     let records = JSON.parse(localStorage.getItem('records')) || []; // Load records from localStorage

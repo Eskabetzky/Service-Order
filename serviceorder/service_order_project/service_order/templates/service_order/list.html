@@ -1,0 +1,409 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Base Styles */
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+        max-width: 1400px;
+        margin: 30px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Header Styles */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .header h1 {
+        color: #0a5304;
+        margin: 0;
+        font-size: 28px;
+    }
+    .search-sort {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    /* Table Styles */
+    .table-container {
+        overflow-x: auto;
+        margin-top: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th {
+        background-color: #0a5304;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+        position: sticky;
+        top: 0;
+        height: 10px;;
+    }
+    td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    tbody tr {
+        font-size: 12px;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+    }
+    .btn {
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+    }
+    .view-btn {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .view-btn:hover {
+        background-color: #138496;
+    }
+    .edit-btn {
+        background-color: #28a745;
+        color: white;
+    }
+    .edit-btn:hover {
+        background-color: #218838;
+    }
+    .delete-btn {
+        background-color: #dc3545;
+        color: white;
+    }
+    .delete-btn:hover {
+        background-color: #c82333;
+    }
+    .add-btn {
+        background-color: #0a5304;
+        color: white;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+    }
+    .add-btn:hover {
+        background-color: #084a03;
+    }
+    
+    /* Nested Table for Service Records */
+    .nested-table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+    }
+    .nested-table th {
+        background-color: #e9ecef;
+        color: #495057;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    .nested-table td {
+        padding: 8px 12px;
+        border: 1px solid #dee2e6;
+        font-size: 13px;
+    }
+    details {
+        cursor: pointer;
+        margin: 5px 0;
+    }
+    details summary {
+        outline: none;
+        font-weight: 500;
+        color: #0a5304;
+    }
+    details[open] summary {
+        margin-bottom: 10px;
+    }
+    
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 5px;
+    }
+    .pagination a {
+        padding: 8px 12px;
+        text-decoration: none;
+        color: #0a5304;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    .pagination a:hover {
+        background-color: #f1f1f1;
+    }
+    .pagination a.active {
+        background-color: #0a5304;
+        color: white;
+        border-color: #0a5304;
+    }
+    
+    /* Empty State */
+    .no-records {
+        text-align: center;
+        padding: 40px;
+        color: #777;
+        font-size: 16px;
+    }
+    
+    /* Badges */
+    .badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .badge-primary {
+        background-color: #007bff;
+        color: white;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .search-sort {
+            width: 100%;
+            flex-direction: column;
+        }
+        .search-box input {
+            width: 100%;
+        }
+        .action-buttons {
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-database"></i> Service Order Database</h1>
+        <div class="search-sort">
+            <div class="sort-select">
+                <select onchange="window.location.href=this.value" class="form-select">
+                    <option value="?order_by=-created_at" {% if order_by == '-created_at' %}selected{% endif %}>Newest First</option>
+                    <option value="?order_by=created_at" {% if order_by == 'created_at' %}selected{% endif %}>Oldest First</option>
+                    <option value="?order_by=full_name" {% if order_by == 'full_name' %}selected{% endif %}>By Name (A-Z)</option>
+                    <option value="?order_by=-full_name" {% if order_by == '-full_name' %}selected{% endif %}>By Name (Z-A)</option>
+                </select>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by name..." 
+                       value="{{ search_query }}" onkeypress="handleKeyPress(event)" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'service_order_form' %}" class="btn add-btn">
+        <i class="fas fa-plus"></i> Add New Service Order
+    </a>
+
+    <div class="table-container">
+        {% if service_orders %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Birth Date</th>
+                    <th>Birth Place</th>
+                    <th>Service Records</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in service_orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.full_name }}</td>
+                    <td>{{ order.birth_date|date:"Y-m-d" }}</td>
+                    <td>{{ order.birth_place }}</td>
+                    <td>
+                        <details>
+                            <summary>
+                                <span class="badge badge-primary">
+                                    {{ order.service_records.count }} record{{ order.service_records.count|pluralize }}
+                                </span>
+                            </summary>
+                            <table class="nested-table">
+                                <thead>
+                                    <tr>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Designation</th>
+                                        <th>Status</th>
+                                        <th>Salary</th>
+                                        <th>Station</th>
+                                        <th>Branch</th>
+                                        <th>LWOP</th>
+                                        <th>Separation Date</th>
+                                        <th>Cause</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for record in order.service_records.all %}
+                                    <tr>
+                                        <td>{{ record.service_from|date:"Y-m-d" }}</td>
+                                        <td>{{ record.service_to|date:"Y-m-d" }}</td>
+                                        <td>{{ record.designation }}</td>
+                                        <td>{{ record.status }}</td>
+                                        <td>{{ record.salary }}</td>
+                                        <td>{{ record.station_of_assignment }}</td>
+                                        <td>{{ record.branch }}</td>
+                                        <td>{{ record.lwop }}</td>
+                                        <td>{{ record.separation_date|date:"Y-m-d" }}</td>
+                                        <td>{{ record.separation_cause }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="10" class="text-center">No service records found</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </details>
+                    </td>
+                    <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="action-buttons">
+                        <a href="{% url 'service_order_detail' order.id %}" class="btn view-btn" title="View Details">
+                            <i class="fas fa-eye"></i>
+                            <span class="action-text">View</span>
+                        </a>
+                        <a href="{% url 'service_order_edit' order.id %}" class="btn edit-btn" title="Edit Record">
+                            <i class="fas fa-edit"></i>
+                            <span class="action-text">Edit</span>
+                        </a>
+                        <a href="{% url 'service_order_delete' order.id %}" 
+                            class="btn delete-btn" 
+                            title="Permanently Delete"
+                            onclick="return confirm('WARNING: This will permanently delete this record and all its service records. Continue?')">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="no-records">
+            <i class="fas fa-database fa-3x" style="margin-bottom: 15px;"></i>
+            <h3>No service order records found</h3>
+            <p>Click the "Add New Service Order" button to create your first record</p>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if order_by %}&order_by={{ order_by }}{% endif %}" 
+               class="page-link">
+                &laquo; First
+            </a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if order_by %}&order_by={{ order_by }}{% endif %}" 
+               class="page-link">
+                Previous
+            </a>
+        {% endif %}
+        
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="page-link active">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if order_by %}&order_by={{ order_by }}{% endif %}" 
+                   class="page-link">
+                    {{ num }}
+                </a>
+            {% endif %}
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if order_by %}&order_by={{ order_by }}{% endif %}" 
+               class="page-link">
+                Next
+            </a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if order_by %}&order_by={{ order_by }}{% endif %}" 
+               class="page-link">
+                Last &raquo;
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            searchRecords();
+        }
+    }
+
+    function searchRecords() {
+        const searchTerm = document.getElementById('searchInput').value.trim();
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (searchTerm) {
+            urlParams.set('search', searchTerm);
+        } else {
+            urlParams.delete('search');
+        }
+        
+        // Remove page parameter when searching
+        urlParams.delete('page');
+        
+        window.location.href = window.location.pathname + '?' + urlParams.toString();
+    }
+
+    function confirmDelete(message) {
+        return confirm(message || 'Are you sure you want to delete this record?');
+    }
+
+    // Initialize form inputs with current filter values
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('searchInput').value = urlParams.get('search') || '';
+        
+        // Add tooltips to action buttons
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="success-message">
+    <h2>Service Order Submitted Successfully!</h2>
+    <p>Your service order has been saved to the database.</p>
+    <a href="{% url 'service_order_form' %}">Submit another service order</a>
+</div>
+{% endblock %}

@@ -34,7 +34,7 @@ html{
 }
 
 body {
-    background-image: url(images/wallpaper1.jpg);
+    background-color: #0a5304;
     background-size: cover;
     background-position: center;
     background-repeat:initial;
@@ -65,19 +65,20 @@ section{
 }
 
   .btn{
-   
-    padding: .5rem;
-    background: #e2e613;
-    border-radius: 4rem;
     box-shadow: 0 0 1rem var(--main-color);
-    font-size: 1rem;
-    color: rgb(0, 0, 0);
     letter-spacing: .1rem;
     font-weight: 500.5;
     transition: .5s ease;
     margin-top: 3rem;
     cursor: pointer;
-    width: 8%;
+    width: 140px;
+    height: 30px;
+    padding: 3px 6px;
+    margin-right: 5px; 
+    border-radius: 10px;
+    background-color: #323232;
+    font-size: 1.2rem;
+    color: white;
     
 }
 .btn:hover{
@@ -88,23 +89,24 @@ section{
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 40;
-    color: #0a5304;
+    color: #ffffff;
 }
 p{
     font-size: 11px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 .contact form{
-    max-width: 100rem;
+    max-width: 180rem;
     margin: 5rem auto;
-    text-align: left;
+    text-align: center;
 
 }
 
 
 .contact form .form-input2{
-    font-size: 1rem;
+    font-size: 2rem;
     height: 5%px;
     width: 100%;
     align-items: left;
@@ -112,11 +114,12 @@ p{
 }
 
 .contact .form-input{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     height: 20%px;
     width: 50%;
     font-weight: bold;
     margin-top: 10px;
+    color: #ffffff;
 }
 
 .contact form .input-label1 input{ 
@@ -187,9 +190,14 @@ p{
     width: 10%;
     padding: 0.2rem;
 }
+table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
 
 .table .table-row tr  input{
-    align-items: row;
+    align-items: center;
     font-size: 1rem;
 }
 
@@ -203,7 +211,7 @@ table, th, td {
     width: 100%;
     background-color: #ffffff;
     border-collapse: collapse;
-    border-width: 3px;
+    border-width: 4px;
     border-color: #464646;
     border-style: solid;
     color: #000000;
@@ -218,7 +226,8 @@ table, th, td {
     padding: 5px;
     text-align: center;
     font-weight: bold;
-    border-radius: 20px;
+    border-radius: 5px;
+    font-size: 1.5rem;
   }
 
   table{
@@ -236,7 +245,8 @@ table, th, td {
     border: none;
     outline: none;
     padding: 1px;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: bold;
   }
 
   input[type="date"]{
@@ -253,6 +263,12 @@ table, th, td {
     background-color: #000000;
     font-weight: bold;
   }
+  /* Hide the Print and Save buttons when printing */
+  @media print {
+              .no-print {
+                  display: none;
+              }
+          }
   </style>    
 
 </head>
@@ -284,256 +300,77 @@ table, th, td {
             </div>
         </form>
      </div>
-      <form action="#">
-        <p>This is to certify that the employee named herein above actually rendered services in this office
-          as shown by the service record below, each line of which is supported by appointment and other 
-          papers actually issued by this office and approved by the authorities concerned.</p><br><br>
-          <table class="customTable">
-            <tbody>
+     <form action="#">
+      <table class="customTable" id="travelTable">
+          <thead>
               <tr>
-                <td colspan="2">Service</td>
-                <td colspan="2">Record of Appointment</td>
-                <td colspan="3">Office Entity/Division</td>
-                <td colspan="1">LWOP</td>
-                <td colspan="2">Separation</td>
+                  <th>Add</th>
+                  <th colspan="2" width="60px" >Service</th>
+                  <th colspan="2" width="350px" >Record of Appointment</th>
+                  <th colspan="3" width="359px">Office Entity/Division</th>
+                  <th colspan="1" width="80px">LWOP</th>
+                  <th colspan="2" width="287px">Separation</th>
+                  <th width="20px">Delete</th>
               </tr>
-            </tbody>
-              <tbody>
-                <tr>
-                  <td colspan="1" width="30px">From</td>
-                  <td colspan="1" width="30px">To</td>
-                  <td colspan="1" width="300px">Designation</td>
-                  <td colspan="1" width="50px">Status</td>
-                  <td colspan="1" width="130px">Salary</td>
-                  <td colspan="1" width="115px">Station Assignment</td>
-                  <td colspan="1" width="114px">branch</td>
-                  <td colspan="1" width="87.5px"></td>
-                  <td colspan="1" width="87.5px">Date</td>
-                  <td colspan="1" width="200px" >Cause</td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="30px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input colspan="1" width="100px" type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-                <tr>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="66.5px"><input type="date" placeholder="enter date"></td>
-                  <td colspan="1" width="203px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="140px"><input type="text" name="Status"></td>
-                  <td colspan="1" width="130px"><input type="number" name="Salary"></td>
-                  <td colspan="1" width="115px"><input type="text" name="Assignment"></td>
-                  <td colspan="1" width="114px"><input type="text" name="Designation"></td>
-                  <td colspan="1" width="87.5px"><input type="text" name="branch"></td>
-                  <td colspan="1" width="87.5px"><input type="date" placeholder="enter date"></td>
-                  <td><input type="text" name="Cause"></td>
-                </tr>
-              </tbody>
-            </table>
-            <input type="button" value="Save" class="btn">
-            <button class="btn" onclick="window.print()" value="Print">Print</button>
-      </form>
-    
-    </section>
+              <tr>
+                <th width="20px" style="font-size:24px">+</th>
+                <th width="30px">From</th>
+                <th width="30px">To</th>
+                <th width="250px">Designation</th>
+                <th width="100px">Status</th>
+                <th width="130px">Salary</th>
+                <th width="115px">Station of Assignment</th>
+                <th width="114px">Branch</th>
+                <th width="80px"> </th>
+                <th width="87.5px">Date</th>
+                <th width="150px" >Cause</th>
+                <th width="20px">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+              <!-- Rows will be added dynamically here -->
+          </tbody>
+      </table>
+      <input type="button" value="Save" class="btn no-print">
+      <button class="btn no-print" onclick="window.print()" value="Print">Print</button>
+  </form>
+</section>
+
+<script>
+  // Function to add a new row
+  function addRow() {
+      const table = document.getElementById("travelTable").getElementsByTagName("tbody")[0];
+      const newRow = table.insertRow();
+
+      // Add "Add" icon
+      const addCell = newRow.insertCell(0);
+      addCell.innerHTML = '<span class="add-icon" onclick="addRow()">+</span>';
+
+      // Add input fields
+      const fields = ["date", "date", "text", "text", "number","text","text","text","date","text"];
+      for (let i = 0; i < fields.length; i++) {
+          const cell = newRow.insertCell(i + 1);
+          if (fields[i] === "date") {
+              cell.innerHTML = `<input type="date" placeholder="enter date">`;
+          } else {
+              cell.innerHTML = `<input type="${fields[i]}" placeholder="enter ${fields[i]}">`;
+          }
+      }
+
+      // Add "Delete" icon
+      const deleteCell = newRow.insertCell(fields.length + 1);
+      deleteCell.innerHTML = '<span class="delete-icon" onclick="deleteRow(this)">🗑️</span>';
+  }
+
+  // Function to delete a row
+  function deleteRow(button) {
+      const row = button.parentElement.parentElement;
+      row.remove();
+  }
+
+  // Add the first row on page load
+  document.addEventListener("DOMContentLoaded", addRow);
+</script>
 
 
 

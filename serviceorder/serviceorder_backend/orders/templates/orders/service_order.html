@@ -1,0 +1,120 @@
+<!-- service_order.html -->
+{% extends 'service_order.html' %}
+{% load static %}
+
+{% block content %}
+<section class="contact" id="contact">
+    <div class="home-image">
+        <img src="{% static 'images/Department_of_Agrarian_Reform_(DAR).svg.png' %}" alt="">
+    </div>
+    <div class="heading-h2">
+        <h2 class="heading">Department of Agrarian Reform</h2> 
+    </div>
+    <div class="heading-h2">
+        <h2 class="heading">Service Order</h2> 
+    </div>
+
+    <form method="post" action="{%url 'service_order' %}" id="serviceOrderForm">
+        {% csrf_token %}
+        
+        <div class="form-input">
+            {{ order_form.full_name.label_tag }}
+            {{ order_form.full_name }}
+            
+            <div id="grid-container">
+                <div>
+                    {{ order_form.birth_date.label_tag }}
+                    {{ order_form.birth_date }}
+                </div>
+                <div>
+                    {{ order_form.birth_place.label_tag }}
+                    {{ order_form.birth_place }}
+                </div>
+            </div>
+        </div>
+        
+        <table class="customTable" id="travelTable">
+            <thead>
+                <tr>
+                    <th>Add</th>
+                    <th colspan="2" width="60px">Service</th>
+                    <th colspan="2" width="350px">Record of Appointment</th>
+                    <th colspan="3" width="359px">Office Entity/Division</th>
+                    <th colspan="1" width="80px">LWOP</th>
+                    <th colspan="2" width="287px">Separation</th>
+                    <th width="20px">Delete</th>
+                </tr>
+                <tr>
+                    <th width="20px" style="font-size:24px">+</th>
+                    <th width="30px">From</th>
+                    <th width="30px">To</th>
+                    <th width="250px">Designation</th>
+                    <th width="100px">Status</th>
+                    <th width="130px">Salary</th>
+                    <th width="115px">Station of Assignment</th>
+                    <th width="114px">Branch</th>
+                    <th width="80px"></th>
+                    <th width="87.5px">Date</th>
+                    <th width="150px">Cause</th>
+                    <th width="20px">Delete</th>
+                </tr>
+            </thead>
+            <tbody id="recordsBody">
+                <!-- Initial row -->
+                <tr>
+                    <td><span class="add-icon" onclick="addRow()">+</span></td>
+                    <td><input type="date" name="service_from" placeholder="enter date"></td>
+                    <td><input type="date" name="service_to" placeholder="enter date"></td>
+                    <td><input type="text" name="designation" placeholder="enter designation"></td>
+                    <td><input type="text" name="status" placeholder="enter status"></td>
+                    <td><input type="number" name="salary" placeholder="enter salary"></td>
+                    <td><input type="text" name="station" placeholder="enter station"></td>
+                    <td><input type="text" name="branch" placeholder="enter branch"></td>
+                    <td><input type="text" name="lwop" placeholder="enter LWOP"></td>
+                    <td><input type="date" name="separation_date" placeholder="enter date"></td>
+                    <td><input type="text" name="separation_cause" placeholder="enter cause"></td>
+                    <td><span class="delete-icon" onclick="deleteRow(this)">🗑️</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <input type="submit" value="Save" class="btn no-print">
+        <button type="button" class="btn no-print" onclick="window.print()">Print</button>
+    </form>
+</section>
+
+<script>
+    // Function to add a new row
+    function addRow() {
+        const tableBody = document.getElementById("recordsBody");
+        const newRow = tableBody.insertRow();
+        
+        // Add cells with input fields
+        const fields = [
+            '<span class="add-icon" onclick="addRow()">+</span>',
+            '<input type="date" name="service_from" placeholder="enter date">',
+            '<input type="date" name="service_to" placeholder="enter date">',
+            '<input type="text" name="designation" placeholder="enter designation">',
+            '<input type="text" name="status" placeholder="enter status">',
+            '<input type="number" name="salary" placeholder="enter salary">',
+            '<input type="text" name="station" placeholder="enter station">',
+            '<input type="text" name="branch" placeholder="enter branch">',
+            '<input type="text" name="lwop" placeholder="enter LWOP">',
+            '<input type="date" name="separation_date" placeholder="enter date">',
+            '<input type="text" name="separation_cause" placeholder="enter cause">',
+            '<span class="delete-icon" onclick="deleteRow(this)">🗑️</span>'
+        ];
+        
+        fields.forEach((field, index) => {
+            const cell = newRow.insertCell(index);
+            cell.innerHTML = field;
+        });
+    }
+
+    // Function to delete a row
+    function deleteRow(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+    }
+</script>
+{% endblock %}

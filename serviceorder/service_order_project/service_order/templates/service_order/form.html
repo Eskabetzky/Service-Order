@@ -1,0 +1,514 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=DM+Serif+Text:ital@0;1&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Service Order</title>
+    <!--Box Icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Bona Nova SC', sans-serif;
+
+}
+
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #0a5304;
+    background-size: cover;
+    background-position: center;
+    background-repeat:initial;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+:root{
+    --bg-color: #0a5304;
+    --second-bg-color: #323946;
+    --text-color: #000000;
+    --main-color: #0ef;
+}
+
+section{
+    min-height: 100vh;
+    padding: 7rem 6% 1rem;
+}
+
+.home-image{
+    display: flex;
+    justify-content: center;
+}
+.home-image img{
+    border-radius: 50%;
+    width: 150px;
+    margin-bottom: 5px;
+}
+
+  .btn{
+    box-shadow: 0 0 1rem var(--main-color);
+    letter-spacing: .1rem;
+    transition: .5s ease;
+    margin-top: 3rem;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    padding: 3px 6px;
+    margin-right: 5px; 
+    border-radius: 25px;
+    background-color: #323232;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    
+}
+.btn:hover{
+    box-shadow: none;
+}
+
+.contact .heading-h1{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40;
+    color: #ffffff;
+}
+.contact .heading-h2{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 40;
+    color: #ffffff;
+}
+p{
+    font-size: 11px;
+    font-weight: bold;
+    color: #0e0e0e;
+    align-items: center;
+    text-align: center;
+}
+
+.contact form{
+    max-width: 160rem;
+    margin: 5rem auto;
+    text-align: center;
+    align-items: center;
+
+}
+
+.contact form .input-label1 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        justify-content: flex-start;
+        width:50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact form .input-label1 label {
+        margin-right: 10px;
+        font-size: 1.5rem;
+        color: #ffffff;
+        white-space: nowrap;
+    }
+
+    .contact form .input-label1 input {
+        width: 100%;
+        height: 30px;
+        border: none;
+        padding-left: 10px;
+        border-radius: 10px;
+    }
+
+    .contact form .birth-fields {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 50%;
+        margin: 0 auto 10px auto;
+    }
+
+    .contact form .birth-fields label {
+        margin-right: 10px;
+        font-size: 1.5rem;
+        color: #ffffff;
+        white-space: nowrap;
+    }
+
+    .contact form .birth-inputs {
+        display: flex;
+        gap:1px;
+        width: 100%;
+    }
+
+    .contact form .birth-inputs input {
+        height: 30px;
+        border: none;
+        padding-left: 10px;
+
+        border-radius: 10px;
+        flex: 1;
+    }
+
+.contact form .input-box input{ 
+    display: flex;
+    flex-direction: row;
+    border: none;
+    border-bottom: 1px solid rgb(5, 0, 0);
+    
+}
+
+
+.contact form .input-box-serve{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    
+    
+}
+
+.form .input-heading .heading h2{
+    text-align: left;
+    font-size: 20rem;
+    margin-bottom:x;
+    border-radius: 20px;
+}
+
+.contact form .input-box input,
+.contact form textarea{
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+    margin: .7rem 0;
+    margin-bottom: 15px;
+    align-items: row;
+    text-align: row;
+}
+
+.contact .input-box-serve input{
+    border-radius: .8rem;
+    margin: .7rem 0;
+    margin-bottom: 15px;
+    width: 10%;
+    padding: 0.2rem;
+}
+table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+.table .table-row tr  input{
+    align-items: center;
+    font-size: 1rem;
+}
+
+table, th, td {
+    border:1px solid black;
+  }
+
+
+
+  table.customTable {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-width: 4px;
+    border-color: #464646;
+    border-style: solid;
+    color: #000000;
+    border-radius: 10px;
+  }
+  
+  table.customTable td,
+  table.customTable th {
+    border-width: 1px;
+    border-color: #b3b1b1;
+    border-style: solid;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  td{
+    padding: 2px;
+  }
+ 
+  input{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 1px;
+    font-size: 9px;
+
+  }
+
+  input[type="date"]{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 1px;
+    font-size: 9px;
+
+  }
+  
+  table.customTable thead {
+    background-color: #fffbfb;
+    font-weight: bold;
+  }
+  .button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-top: 1.5em;
+}
+
+#contBtn {
+  box-shadow: 0 0 1rem var(--main-color);
+  text-decoration: none;
+  background: #323232;
+  color: #fff;
+  padding: .8em 3em;
+  -webkit-box-shadow: 0 0 1rem var(--main-color);
+  -moz-box-shadow: 0 0 1rem var(--main-color);
+  box-shadow: 0 0 1rem var(--main-color);
+  border-radius: 25px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  transition: all .4s ease;
+  width: fit-content;
+}
+
+#contBtn:hover {
+  -webkit-box-shadow: 0px 15px 30px #0ef;
+  -moz-box-shadow: 0px 15px 30px #0ef;
+  box-shadow: 0px 15px 30px #0ef;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  transition: all .4s ease;
+}
+  /* Hide the Print and Save buttons when printing */
+  @media print {
+              .no-print {
+                  display: none;
+              }
+          }
+  </style>    
+<section class="contact" id="contact">
+    <div class="home-image">
+        <img src="{% static 'images/Department_of_Agrarian_Reform_(DAR).svg.png' %}" alt="">
+    </div>
+    <div class="heading-h1">
+        <h1 class="heading">Department of Agrarian Reform</h1> 
+    </div>
+    <div class="heading-h2">
+        <h2 class="heading">Service Order</h2> 
+    </div>
+    <p>Yakal St. Carmen Cagayan De Oro City</p>
+
+    <form id="serviceOrderForm" method="post" action="{% url 'service_order_form' %}">
+        {% csrf_token %}
+        <input type="hidden" name="service_records" id="serviceRecordsData">
+                
+        <div class="input-label1">
+            <label>Full Name:</label>
+            <input type="text" name="full_name" placeholder=" " required>
+        </div> 
+        
+        <div class="birth-fields">
+            <label>Birth :</label>
+            <div class="birth-inputs">
+                <input type="date" name="birth_date" placeholder="Birthdate" required>
+                <input type="text" name="birth_place" placeholder="Birth place" required>
+            </div>
+        </div>
+    
+        
+        <table class="customTable" id="travelTable">
+            <thead>
+                <tr>
+                    <th>Add</th>
+                    <th colspan="2" width="40px">Service</th>
+                    <th colspan="2" width="350px">Record of Appointment</th>
+                    <th colspan="3" width="359px">Office Entity/Division</th>
+                    <th colspan="1" width="80px">LWOP</th>
+                    <th colspan="2" width="287px">Separation</th>
+                    <th width="10px">Delete</th>
+                </tr>
+                <tr>
+                    <th width="20px" style="font-size:24px">+</th>
+                    <th width="20px">From</th>
+                    <th width="20px">To</th>
+                    <th width="250px">Designation</th>
+                    <th width="80px">Status</th>
+                    <th width="100px">Salary</th>
+                    <th width="115px">Station of Assignment</th>
+                    <th width="114px">Branch</th>
+                    <th width="80px"> </th>
+                    <th width="87.5px">Date</th>
+                    <th width="150px">Cause</th>
+                    <th width="10px">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <input type="button" value="Save" class="btn no-print" id="saveBtn">
+        <button class="btn no-print" onclick="window.print()" value="Print">Print</button>
+        <a href="{% url 'service_order_list' %}" id="contBtn">View Data List</a>
+    </form>
+</section>
+
+<script>
+    // Function to add a new row
+    function addRow() {
+        const table = document.getElementById("travelTable").getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
+
+        // Add "Add" icon
+        const addCell = newRow.insertCell(0);
+        addCell.innerHTML = '<span class="add-icon" onclick="addRow()">+</span>';
+
+        // Add input fields
+        const fields = [
+            {type: "date", name: "service_from"},
+            {type: "date", name: "service_to"},
+            {type: "text", name: "designation"},
+            {type: "text", name: "status"},
+            {type: "number", name: "salary", step: "0.01"},
+            {type: "text", name: "station_of_assignment"},
+            {type: "text", name: "branch"},
+            {type: "text", name: "lwop"},
+            {type: "date", name: "separation_date"},
+            {type: "text", name: "separation_cause"}
+        ];
+        
+        for (let i = 0; i < fields.length; i++) {
+            const cell = newRow.insertCell(i + 1);
+            cell.innerHTML = `<input type="${fields[i].type}" name="records[][${fields[i].name}]" ${fields[i].step ? `step="${fields[i].step}"` : ''} placeholder="enter ${fields[i].name}">`;
+        }
+
+        // Add "Delete" icon
+        const deleteCell = newRow.insertCell(fields.length + 1);
+        deleteCell.innerHTML = '<span class="delete-icon" onclick="deleteRow(this)">🗑️</span>';
+    }
+
+    // Function to delete a row
+    function deleteRow(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+    }
+
+    // Add the first row on page load
+    document.addEventListener("DOMContentLoaded", addRow);
+
+    // Save button functionality
+    document.getElementById('saveBtn').addEventListener('click', function() {
+    const form = document.getElementById('serviceOrderForm');
+    const records = [];
+    const rows = document.querySelectorAll('#travelTable tbody tr');
+    
+    rows.forEach(row => {
+        const inputs = row.querySelectorAll('input');
+        const record = {
+            service_from: inputs[0].value || null,
+            service_to: inputs[1].value || null,
+            designation: inputs[2].value || '',
+            status: inputs[3].value || '',
+            salary: inputs[4].value || '0', // Ensure we always have a value
+            station_of_assignment: inputs[5].value || '',
+            branch: inputs[6].value || '',
+            lwop: inputs[7].value || '',
+            separation_date: inputs[8].value || null,
+            separation_cause: inputs[9].value || ''
+        };
+        
+        // Validate salary is a valid number
+        if (isNaN(parseFloat(record.salary))) {
+            alert('Please enter a valid number for salary');
+            inputs[4].style.border = '1px solid red';
+            return;
+        }
+        
+        // Only add record if required fields are present
+        if (record.designation) {
+            records.push(record);
+        }
+    });
+    
+    // Create hidden input if it doesn't exist
+    let recordsInput = document.getElementById('serviceRecordsData');
+    if (!recordsInput) {
+        recordsInput = document.createElement('input');
+        recordsInput.type = 'hidden';
+        recordsInput.name = 'service_records';
+        recordsInput.id = 'serviceRecordsData';
+        form.appendChild(recordsInput);
+    }
+    recordsInput.value = JSON.stringify(records);
+    
+    // Validate before submit
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    let isValid = true;
+    
+    dateInputs.forEach(input => {
+        if (input.value && !input.validity.valid) {
+            input.style.border = '1px solid red';
+            isValid = false;
+        } else {
+            input.style.border = '';
+        }
+    });
+    
+    if (!isValid) {
+        alert('Please correct the invalid dates (must be in YYYY-MM-DD format)');
+        return;
+    }
+    
+    // Check if at least one record has required fields
+    if (records.length === 0 || !records.some(r => r.designation)) {
+        alert('Please add at least one service record with a designation');
+        return;
+    }
+    
+    form.submit();
+});
+</script>
+{% endblock %}
