@@ -1,0 +1,49 @@
+<!-- templates/service_order/export_pdf.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Service Orders Export</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #0a5304; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background-color: #0a5304; color: white; padding: 8px; text-align: left; }
+        td { padding: 8px; border-bottom: 1px solid #ddd; }
+        .footer { margin-top: 30px; text-align: right; font-size: 12px; color: #777; }
+    </style>
+</head>
+<body>
+    <h1>Service Orders Report</h1>
+    <p>Generated on: {{ export_date }}</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Birth Date</th>
+                <th>Birth Place</th>
+                <th>Created At</th>
+                <th>Records Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in service_orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.full_name }}</td>
+                <td>{{ order.birth_date|date:"Y-m-d" }}</td>
+                <td>{{ order.birth_place }}</td>
+                <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                <td>{{ order.service_records.count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="footer">
+        Department of Agrarian Reform - Service Order System
+    </div>
+</body>
+</html>

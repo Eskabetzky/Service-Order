@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .header h1 {
+        color: #0a5304;
+        margin: 0;
+    }
+    td {
+        font-style: italic;
+        font-weight: 600;
+        color: #2b2727;
+    }
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 15px;
+        background-color: #0a5304;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition:0.3s;
+        font-style: italic;
+    }
+    .back-btn:hover {
+        background-color: #084a03;
+    }
+    .detail-section {
+        margin-bottom: 30px;
+    }
+    .detail-section h2 {
+        color: #0a5304;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .detail-row {
+        display: flex;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    .detail-label {
+        font-weight: bold;
+        width: 200px;
+        color: #555;
+    }
+    .detail-value {
+        flex: 1;
+        font-style: italic;
+        font-weight: 600;
+        color: #555;
+    }
+    .records-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+    .records-table th {
+        background-color: #0a5304;
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+    .records-table td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+    }
+    .records-table tr:hover {
+        background-color: #f5f5f5;
+    }
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    .btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.3s;
+    }
+    .btn-edit {
+        background-color: #28a745;
+    }
+    .btn-edit:hover {
+        background-color: #218838;
+    }
+    .btn-delete {
+        background-color: #dc3545;
+    }
+    .btn-delete:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<div class="container">
+    <a href="{% url 'service_order_list' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
+    
+    <div class="header">
+        <h1>Service Order Details</h1>
+    </div>
+
+    <div class="detail-section">
+        <h2>Personal Information</h2>
+        <div class="detail-row">
+            <div class="detail-label">Full Name:</div>
+            <div class="detail-value">{{ service_order.full_name }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Birth Date:</div>
+            <div class="detail-value">{{ service_order.birth_date|date:"Y-m-d" }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Birth Place:</div>
+            <div class="detail-value">{{ service_order.birth_place }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Created At:</div>
+            <div class="detail-value">{{ service_order.created_at|date:"Y-m-d H:i" }}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Last Updated:</div>
+            <div class="detail-value">{{ service_order.updated_at|date:"Y-m-d H:i" }}</div>
+        </div>
+    </div>
+
+    <div class="detail-section">
+        <h2>Service Records ({{ service_order.service_records.count }})</h2>
+        {% if service_order.service_records.all %}
+        <table class="records-table">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Designation</th>
+                    <th>Status</th>
+                    <th>Salary</th>
+                    <th>Station</th>
+                    <th>Branch</th>
+                    <th>LWOP</th>
+                    <th>Separation Date</th>
+                    <th>Cause</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in service_order.service_records.all %}
+                <tr>
+                    <td>{{ record.service_from|date:"Y-m-d" }}</td>
+                    <td>{{ record.service_to|date:"Y-m-d" }}</td>
+                    <td>{{ record.designation }}</td>
+                    <td>{{ record.status }}</td>
+                    <td>{{ record.salary }}</td>
+                    <td>{{ record.station_of_assignment }}</td>
+                    <td>{{ record.branch }}</td>
+                    <td>{{ record.lwop }}</td>
+                    <td>{{ record.separation_date|date:"Y-m-d" }}</td>
+                    <td>{{ record.separation_cause }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No service records found for this order.</p>
+        {% endif %}
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'service_order_edit' service_order.id %}" class="btn btn-edit">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'service_order_delete' service_order.id %}" class="btn btn-delete"
+           onclick="return confirm('Are you sure you want to delete this service order and all its records?')">
+            <i class="fas fa-trash"></i> Delete
+        </a>
+    </div>
+</div>
+{% endblock %}
