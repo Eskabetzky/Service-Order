@@ -79,11 +79,12 @@ section{
     height: 30px;
     padding: 3px 6px;
     margin-right: 5px; 
-    border-radius: 25px;
+    border-radius: 5px;
     background-color: #323232;
     font-size: 1.2rem;
     color: white;
     text-decoration: none;
+    font-style: italic;
     
 }
 .btn:hover{
@@ -168,7 +169,7 @@ p{
         height: 30px;
         border: none;
         padding-left: 10px;
-
+        font-weight: bold;
         border-radius: 10px;
         flex: 1;
     }
@@ -178,6 +179,7 @@ p{
     flex-direction: row;
     border: none;
     border-bottom: 1px solid rgb(5, 0, 0);
+    font-weight: bold;
     
 }
 
@@ -243,6 +245,7 @@ table, th, td {
     border-style: solid;
     color: #000000;
     border-radius: 10px;
+    font-weight: bold;
   }
   
   table.customTable td,
@@ -272,7 +275,9 @@ table, th, td {
     border: none;
     outline: none;
     padding: 1px;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: bold;
+    font-style: italic;
 
   }
 
@@ -282,6 +287,8 @@ table, th, td {
     outline: none;
     padding: 1px;
     font-size: 9px;
+    font-weight: bold;
+    font-style: italic;
 
   }
   
@@ -302,22 +309,23 @@ table, th, td {
   text-decoration: none;
   background: #323232;
   color: #fff;
-  padding: .8em 3em;
+  padding: .7em 1.5em;
   -webkit-box-shadow: 0 0 1rem var(--main-color);
   -moz-box-shadow: 0 0 1rem var(--main-color);
   box-shadow: 0 0 1rem var(--main-color);
-  border-radius: 25px;
+  border-radius: 5px;
   -webkit-transition: all .4s ease;
   -moz-transition: all .4s ease;
   -o-transition: all .4s ease;
   transition: all .4s ease;
   width: fit-content;
+  font-style: italic;
 }
 
 #contBtn:hover {
-  -webkit-box-shadow: 0px 15px 30px #0ef;
-  -moz-box-shadow: 0px 15px 30px #0ef;
-  box-shadow: 0px 15px 30px #0ef;
+  -webkit-box-shadow: 0px 10px 20px #0ef;
+  -moz-box-shadow: 0px 10px 20px #0ef;
+  box-shadow: 0px 10px 10px #0ef;
   -webkit-transition: all .4s ease;
   -moz-transition: all .4s ease;
   -o-transition: all .4s ease;
@@ -327,6 +335,9 @@ table, th, td {
   @media print {
               .no-print {
                   display: none;
+              }
+              .contBtn {
+                display: none;
               }
           }
   </style>    
@@ -392,7 +403,7 @@ table, th, td {
         </table>
         <input type="button" value="Save" class="btn no-print" id="saveBtn">
         <button class="btn no-print" onclick="window.print()" value="Print">Print</button>
-        <a href="{% url 'service_order_list' %}" id="contBtn">View Data List</a>
+        <a href="{% url 'service_order_list' %}" class="btn no-print" id="contBtn">View Data List</a>
     </form>
 </section>
 
@@ -507,6 +518,14 @@ table, th, td {
         alert('Please add at least one service record with a designation');
         return;
     }
+    function isValidDate(dateString) {
+    const regEx = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateString.match(regEx)) return false;  // Invalid format
+    const d = new Date(dateString);
+    const dNum = d.getTime();
+    if (!dNum && dNum !== 0) return false; // NaN value, invalid date
+    return d.toISOString().slice(0,10) === dateString;
+}
     
     form.submit();
 });

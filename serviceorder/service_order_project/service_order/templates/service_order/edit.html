@@ -1,42 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <a href="{% url 'service_order_list' %}" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Back to List
-    </a>
-    <h1>Edit Service Order</h1>
-    <form method="post">
-        {% csrf_token %}
-        
-        <div class="form-section">
-            <h2>Personal Information</h2>
-            {{ form.as_p }}
-        </div>
-        
-        <div class="form-section">
-            <h2>Service Records</h2>
-            {{ formset.management_form }}
-            {% for form in formset %}
-                <div class="record-form">
-                    {{ form.as_p }}
-                </div>
-            {% endfor %}
-        </div>
-        
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-            <a href="{% url 'service_order_detail' service_order.id %}" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
-</div>
-
 <style>
+    /* Previous styles remain the same */
     .container {
         background: white;
         margin: 30px;
         border-radius: 10px;
-        
     }
     .back-btn {
         display: inline-block;
@@ -49,33 +19,40 @@
         transition: background-color 0.3s;
         margin-top: 5px;
         margin-left: 5px;
+        font-style: italic;
     }
     .back-btn:hover {
         background-color: #495057;
     }
-    .container h1 {
-        color: #084a03;
-        margin-left:20px;
+
+    .Edit-Order {
+        background-color: #084a03;
+        border-radius: 5px;
+    }
+    .Edit-Order h1 {
+        color: #ffffff;
+        margin-left: 20px;
     }
     .form-section {
-        max-width: 2000px;
+        max-width: 2050px;
         margin-left: 10px;
-        margin-right:10px;
+        margin-right: 10px;
         margin-bottom: 1.5rem;
         padding: 1rem;
-        background: #b3b3b3;
+        background: #eeeded;
         border-radius: 25px;
     }
 
     .form-section h2 {
-       color: #084a03;
+        color: #084a03;
     }
     .record-form {
         margin-bottom: 1rem;
         padding: 1rem;
         background: white;
         border: 1px solid #ddd;
-        border-radius: 5px;
+        border-radius: 25px;
+        position: relative;
     }
     .form-actions {
         margin-top: 2rem;
@@ -88,17 +65,18 @@
         text-decoration: none;
         color: white;
         border-radius: 10px;
-        transition: background-color 0.3s;
+        transition: 0.3s;
         margin-top: 5px;
         margin-left: 20px;
+        border: none;
+        cursor: pointer;
+        font-style: italic;
     }
     .btn-primary {
         background-color: #084a03;
-        
     }
     .btn-primary:hover {
         background-color: #495057;
-        
     }
     .btn-secondary {
         background-color: #084a03;
@@ -106,5 +84,142 @@
     .btn-secondary:hover {
         background-color: #e0001e;
     }
+    .btn-add {
+        background-color: #084a03;
+        margin-top: 10px;
+    }
+    .btn-add:hover {
+        background-color: #0a6b03;
+    }
+    .delete-option {
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+    .delete-option label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #e0001e;
+        cursor: pointer;
+    }
+    .form-fields p {
+        margin-bottom: 10px;
+    }
+    label {
+        font-weight: 700;
+        font-style: italic;
+    }
 </style>
+<div class="container">
+    <a href="{% url 'service_order_list' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
+    <div class="Edit-Order">
+        <h1>Edit Service Order</h1>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-section">
+            <h2>Personal Information</h2>
+            {{ form.as_p }}
+        </div>
+        
+        <div class="form-section">
+            <h2>Service Records</h2>
+            {{ formset.management_form }}
+            <div id="service-records-container">
+                {% for form in formset %}
+                    <div class="record-form">
+                        {{ form.id }}
+                        <div class="form-fields">
+                            {{ form.as_p }}
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="add-service-record" class="btn btn-add">
+                <i class="fas fa-plus"></i> Add Service Record
+            </button>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{% url 'service_order_detail' service_order.id %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('service-records-container');
+    const addButton = document.getElementById('add-service-record');
+    const totalForms = document.getElementById('id_service_records-TOTAL_FORMS');
+    let formCount = parseInt(totalForms.value);
+
+    addButton.addEventListener('click', function() {
+        const newForm = document.createElement('div');
+        newForm.className = 'record-form';
+        
+        // Create a new form with empty fields including delete option
+        newForm.innerHTML = `
+            <input type="hidden" name="service_records-${formCount}-id" id="id_service_records-${formCount}-id">
+            <div class="form-fields">
+                <p>
+                    <label for="id_service_records-${formCount}-service_from">Service from:</label>
+                    <input type="date" name="service_records-${formCount}-service_from" id="id_service_records-${formCount}-service_from">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-service_to">Service to:</label>
+                    <input type="date" name="service_records-${formCount}-service_to" id="id_service_records-${formCount}-service_to">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-designation">Designation:</label>
+                    <input type="text" name="service_records-${formCount}-designation" id="id_service_records-${formCount}-designation">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-status">Status:</label>
+                    <input type="text" name="service_records-${formCount}-status" id="id_service_records-${formCount}-status">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-salary">Salary:</label>
+                    <input type="number" name="service_records-${formCount}-salary" id="id_service_records-${formCount}-salary" step="0.01" value="0.00">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-station">Station of assignment:</label>
+                    <input type="text" name="service_records-${formCount}-station" id="id_service_records-${formCount}-station">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-branch">Branch:</label>
+                    <input type="text" name="service_records-${formCount}-branch" id="id_service_records-${formCount}-branch">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-lwop">Lwop:</label>
+                    <input type="text" name="service_records-${formCount}-lwop" id="id_service_records-${formCount}-lwop">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-separation_date">Separation date:</label>
+                    <input type="date" name="service_records-${formCount}-separation_date" id="id_service_records-${formCount}-separation_date">
+                </p>
+                <p>
+                    <label for="id_service_records-${formCount}-separation_cause">Separation cause:</label>
+                    <input type="text" name="service_records-${formCount}-separation_cause" id="id_service_records-${formCount}-separation_cause">
+                </p>
+            </div>
+            <div class="delete-option">
+                <label>
+                    <input type="checkbox" name="service_records-${formCount}-DELETE" id="id_service_records-${formCount}-DELETE">
+                    Delete this record
+                </label>
+            </div>
+        `;
+        
+        container.appendChild(newForm);
+        formCount++;
+        totalForms.value = formCount;
+    });
+});
+</script>
 {% endblock %}
