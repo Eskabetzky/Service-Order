@@ -141,7 +141,7 @@ p{
         height: 30px;
         border: none;
         padding-left: 10px;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     .contact form .birth-fields {
@@ -170,7 +170,7 @@ p{
         border: none;
         padding-left: 10px;
         font-weight: bold;
-        border-radius: 10px;
+        border-radius: 5px;
         flex: 1;
     }
 
@@ -353,7 +353,7 @@ table, th, td {
     </div>
     <p>Yakal St. Carmen Cagayan De Oro City</p>
 
-    <form id="serviceOrderForm" method="post" action="{% url 'service_order_form' %}">
+    <form id="serviceOrderForm" method="post" action="{% url 'service_order_form' %}" data-netlify="true">
         {% csrf_token %}
         <input type="hidden" name="service_records" id="serviceRecordsData">
                 
@@ -371,7 +371,7 @@ table, th, td {
         </div>
     
         
-        <table class="customTable" id="travelTable">
+        <table class="customTable" id="travelTable" data-netlify="true" >
             <thead>
                 <tr>
                     <th>Add</th>
@@ -397,7 +397,7 @@ table, th, td {
                     <th width="10px">Delete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-netlify="true">
                 <!-- Rows will be added dynamically here -->
             </tbody>
         </table>

@@ -124,7 +124,7 @@
         <h1>Service Order Details</h1>
     </div>
 
-    <div class="detail-section">
+    <div class="detail-section" data-netlify="true">
         <h2>Personal Information</h2>
         <div class="detail-row">
             <div class="detail-label">Full Name:</div>
@@ -151,7 +151,7 @@
     <div class="detail-section">
         <h2>Service Records ({{ service_order.service_records.count }})</h2>
         {% if service_order.service_records.all %}
-        <table class="records-table">
+        <table class="records-table" data-netlify="true">
             <thead>
                 <tr>
                     <th>From</th>
@@ -166,7 +166,7 @@
                     <th>Cause</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-netlify="true">
                 {% for record in service_order.service_records.all %}
                 <tr>
                     <td>{{ record.service_from|date:"Y-m-d" }}</td>
