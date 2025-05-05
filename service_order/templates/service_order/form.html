@@ -15,7 +15,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'service_order/css/style.css' %}">
     <title>Service Order</title>
     <!--Box Icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -451,83 +451,85 @@ table, th, td {
     document.addEventListener("DOMContentLoaded", addRow);
 
     // Save button functionality
-    document.getElementById('saveBtn').addEventListener('click', function() {
-    const form = document.getElementById('serviceOrderForm');
-    const records = [];
-    const rows = document.querySelectorAll('#travelTable tbody tr');
-    
-    rows.forEach(row => {
-        const inputs = row.querySelectorAll('input');
-        const record = {
-            service_from: inputs[0].value || null,
-            service_to: inputs[1].value || null,
-            designation: inputs[2].value || '',
-            status: inputs[3].value || '',
-            salary: inputs[4].value || '0', // Ensure we always have a value
-            station_of_assignment: inputs[5].value || '',
-            branch: inputs[6].value || '',
-            lwop: inputs[7].value || '',
-            separation_date: inputs[8].value || null,
-            separation_cause: inputs[9].value || ''
-        };
+    document.getElementById('saveBtn').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default form submission
         
-        // Validate salary is a valid number
-        if (isNaN(parseFloat(record.salary))) {
-            alert('Please enter a valid number for salary');
-            inputs[4].style.border = '1px solid red';
+        const form = document.getElementById('serviceOrderForm');
+        const records = [];
+        const rows = document.querySelectorAll('#travelTable tbody tr');
+        
+        // Validate the main form fields first
+        const fullName = form.querySelector('input[name="full_name"]').value.trim();
+        const birthDate = form.querySelector('input[name="birth_date"]').value;
+        const birthPlace = form.querySelector('input[name="birth_place"]').value.trim();
+        
+        if (!fullName) {
+            alert('Please enter full name');
             return;
         }
         
-        // Only add record if required fields are present
-        if (record.designation) {
+        if (!birthDate) {
+            alert('Please enter birth date');
+            return;
+        }
+        
+        if (!birthPlace) {
+            alert('Please enter birth place');
+            return;
+        }
+        
+        // Collect records data
+        rows.forEach(row => {
+            const inputs = row.querySelectorAll('input');
+            const record = {
+                service_from: inputs[0].value || null,
+                service_to: inputs[1].value || null,
+                designation: inputs[2].value || '',
+                status: inputs[3].value || '',
+                salary: inputs[4].value || '0',
+                station_of_assignment: inputs[5].value || '',
+                branch: inputs[6].value || '',
+                lwop: inputs[7].value || '',
+                separation_date: inputs[8].value || null,
+                separation_cause: inputs[9].value || ''
+            };
+            
+            // Validate required fields
+            if (!record.designation) {
+                alert('Designation is required for all service records');
+                inputs[2].style.border = '1px solid red';
+                return;
+            }
+            
+            // Validate salary is a valid number
+            if (isNaN(parseFloat(record.salary))) {
+                alert('Please enter a valid number for salary');
+                inputs[4].style.border = '1px solid red';
+                return;
+            }
+            
             records.push(record);
+        });
+        
+        // Validate at least one record exists
+        if (records.length === 0) {
+            alert('Please add at least one service record');
+            return;
         }
-    });
-    
-    // Create hidden input if it doesn't exist
-    let recordsInput = document.getElementById('serviceRecordsData');
-    if (!recordsInput) {
-        recordsInput = document.createElement('input');
-        recordsInput.type = 'hidden';
-        recordsInput.name = 'service_records';
-        recordsInput.id = 'serviceRecordsData';
-        form.appendChild(recordsInput);
-    }
-    recordsInput.value = JSON.stringify(records);
-    
-    // Validate before submit
-    const dateInputs = document.querySelectorAll('input[type="date"]');
-    let isValid = true;
-    
-    dateInputs.forEach(input => {
-        if (input.value && !input.validity.valid) {
-            input.style.border = '1px solid red';
-            isValid = false;
-        } else {
-            input.style.border = '';
+        
+        // Create hidden input for records if it doesn't exist
+        let recordsInput = document.getElementById('serviceRecordsData');
+        if (!recordsInput) {
+            recordsInput = document.createElement('input');
+            recordsInput.type = 'hidden';
+            recordsInput.name = 'service_records';
+            recordsInput.id = 'serviceRecordsData';
+            form.appendChild(recordsInput);
         }
+        recordsInput.value = JSON.stringify(records);
+        
+        // Submit the form
+        form.submit();
     });
-    
-    if (!isValid) {
-        alert('Please correct the invalid dates (must be in YYYY-MM-DD format)');
-        return;
-    }
-    
-    // Check if at least one record has required fields
-    if (records.length === 0 || !records.some(r => r.designation)) {
-        alert('Please add at least one service record with a designation');
-        return;
-    }
-    function isValidDate(dateString) {
-    const regEx = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateString.match(regEx)) return false;  // Invalid format
-    const d = new Date(dateString);
-    const dNum = d.getTime();
-    if (!dNum && dNum !== 0) return false; // NaN value, invalid date
-    return d.toISOString().slice(0,10) === dateString;
-}
-    
-    form.submit();
-});
 </script>
 {% endblock %}
