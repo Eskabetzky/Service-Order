@@ -12,12 +12,18 @@ class ServiceOrderForm(forms.ModelForm):
 class ServiceRecordForm(forms.ModelForm):
     class Meta:
         model = ServiceRecord
-        fields = ['service_from','service_to','designation','status','salary','station_of_assignment','branch','lwop','separation_date','separation_cause' ]
+        fields = '__all__'
         widgets = {
             'service_from': forms.DateInput(attrs={'type': 'date'}),
             'service_to': forms.DateInput(attrs={'type': 'date'}),
             'separation_date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Make these fields optional
+        self.fields['station_of_assignment'].required = False
+        self.fields['branch'].required = False
 
 class ServiceRecordFormSet(forms.BaseInlineFormSet):
     def clean(self):

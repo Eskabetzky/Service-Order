@@ -95,10 +95,11 @@ def service_order_detail(request, pk):
         'service_order': service_order
     })
 
+# views.py
+# views.py
 def service_order_edit(request, pk):
     service_order = get_object_or_404(ServiceOrder, pk=pk)
     
-    # Define the formset factory at the start of the function
     ServiceRecordFormSet = inlineformset_factory(
         ServiceOrder,
         ServiceRecord,
@@ -115,6 +116,12 @@ def service_order_edit(request, pk):
             form.save()
             formset.save()
             return redirect('service_order_detail', pk=service_order.id)
+        else:
+            # Print form errors for debugging
+            print("Form errors:", form.errors)
+            for form_in_formset in formset:
+                if form_in_formset.errors:
+                    print("Formset form errors:", form_in_formset.errors)
     else:
         form = ServiceOrderForm(instance=service_order)
         formset = ServiceRecordFormSet(instance=service_order)
